@@ -44,9 +44,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Developer\library\Log\wx_log\wxlogger\wxlogger;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\Developer\library\Log\wx_log\wxlogger\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxlogger.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -67,9 +70,6 @@
     <ClInclude Include="AppCore.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Server.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="TcpProxy.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppCore.cpp" />

@@ -1,6 +1,7 @@
 #include "Client.h"
 
 #include <thread>
+#include "wxlogger_def.h"
 using namespace wwx;
 Client::Client(std::string server_ip, int port)
 {
@@ -46,8 +47,8 @@ bool Client::Connect()
 		return false;
 	}
 
-	std::thread t(onRecvMessage, this);
-	t.detach();
+//	std::thread t(onRecvMessage, this);
+//	t.detach();
 	return true;
 }
 /*
@@ -60,7 +61,17 @@ void Client::StartRecvProcess(WebSocket_Client* ws_client)
 
 void Client::onSendMessage(std::string message)
 {
-	std::cout << "send : " << message.c_str() << std::endl;
+	if (message.empty())
+		return;
+
+	std::string s_tmp;
+	int i_size = message.size();
+	for (int i = 0; i < i_size; i++)
+	{
+		s_tmp += chToHex(message[i]);
+	}
+	WXLOG_DEBUG("client send : [ " << s_tmp << " ]");
+	//std::cout << "send : " << message.c_str() << std::endl;
 	send(sockClient, message.data(), message.length(), 0);
 
 }
@@ -90,7 +101,7 @@ void Client::onRecvMessage(void* instance)
 			}
 		}
 		
-		std::cout << "socket recv : " << recv_buf << std::endl;
+		//std::cout << "socket recv : " << recv_buf << std::endl;
 	}
 }
 
