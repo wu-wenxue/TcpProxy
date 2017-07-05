@@ -69,9 +69,6 @@
     <ClInclude Include="Server.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="TcpProxy.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="AppCore.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="main.cpp" />

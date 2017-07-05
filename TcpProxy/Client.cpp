@@ -46,8 +46,8 @@ bool Client::Connect()
 		return false;
 	}
 
-	std::thread t(onRecvMessage, this);
-	t.detach();
+//	std::thread t(onRecvMessage, this);
+//	t.detach();
 	return true;
 }
 /*

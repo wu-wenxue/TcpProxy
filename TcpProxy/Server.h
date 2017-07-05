@@ -25,6 +25,7 @@ namespace wwx
 
 		void Close();
 
+		SOCKET GetClientSocket();
 	private:
 		WSADATA wsaData;
 		SOCKADDR_IN addrClient;
