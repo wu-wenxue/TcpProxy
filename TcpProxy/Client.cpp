@@ -3,6 +3,7 @@
 #include <thread>
 #include "wxlogger_def.h"
 using namespace wwx;
+using namespace wxlog;
 Client::Client(std::string server_ip, int port)
 {
 	m_server_ip = server_ip;

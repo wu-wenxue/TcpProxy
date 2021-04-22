@@ -1,11 +1,11 @@
 #include "AppCore.h"
 #include <thread>
 #include "wxlogger_def.h"
+using namespace wxlog;
 
 AppCore::AppCore()
 {
 }
-
 
 AppCore::~AppCore()
 {
@@ -33,11 +33,8 @@ void AppCore::start()
 
 void AppCore::ClientToServer()
 {
-<<<<<<< HEAD
 	char recv_buf[10240] = { 0 };
-=======
-	char recv_buf[1024] = { 0 };
->>>>>>> 3a7a0e421f8ef55c8db2300e7d4d89cbfc258052
+
 	while (1)
 	{
 		memset(recv_buf, 0, sizeof(recv_buf));
@@ -50,17 +47,14 @@ void AppCore::ClientToServer()
 
 void AppCore::ServerToClient()
 {
-<<<<<<< HEAD
 	char recv_buf[10240] = { 0 };
-=======
-	char recv_buf[1024] = { 0 };
->>>>>>> 3a7a0e421f8ef55c8db2300e7d4d89cbfc258052
+
 	while (1)
 	{
 		memset(recv_buf, 0, sizeof(recv_buf));
 		int len = recv(m_server->GetClientSocket(), recv_buf, sizeof(recv_buf), 0);
 
-<<<<<<< HEAD
+
 		int i_size = strlen(recv_buf);
 		if (i_size == 0)
 		{
@@ -74,8 +68,6 @@ void AppCore::ServerToClient()
 		}
 		WXLOG_DEBUG("server recv : [ " << s_tmp << " ]");
 
-=======
->>>>>>> 3a7a0e421f8ef55c8db2300e7d4d89cbfc258052
 		m_client->onSendMessage(recv_buf);
 //		int isend = send(m_client->GetSocket(), recv_buf, sizeof(recv_buf), 0);
 	}
