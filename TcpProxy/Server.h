@@ -19,11 +19,11 @@ namespace wwx
 
 		void Listen();
 
-		void Accept();
+		bool Accept();
 
-		void onSendMessage(std::string message);
+		bool onSendMessage(char* message,int len);
 
-		void Close();
+		void close();
 
 		SOCKET GetClientSocket();
 	private:

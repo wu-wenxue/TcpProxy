@@ -1,6 +1,9 @@
 #include "Server.h"
 #include <iostream>
+
 using namespace wwx;
+using namespace std;
+
 Server::Server(int port)
 {
 	m_port = port;
@@ -48,58 +51,29 @@ void Server::Listen()
 	}
 }
 
-void Server::Accept()
+bool Server::Accept()
 {
-	SOCKADDR_IN addrClient;
+	//SOCKADDR_IN addrClient;
 	int len = sizeof(SOCKADDR);
-	char recv_buf[1024] = { 0 };
-//	while (1)
-//	{
-		//等待客户请求到来    
-		sockConn = accept(sockSrv, (SOCKADDR *)&addrClient, &len);
-		if (sockConn == SOCKET_ERROR){
-			printf("Accept failed:%d", WSAGetLastError());
-//			break;
-		}
-//		break;
-
-		printf("Accept client IP:[%s]\n", inet_ntoa(addrClient.sin_addr));
-		
-/*
-	while (1)
-	{
-		std::string str;
-		std::cin >> str;
-		onSendMessage(str);
-		
-		memset(recv_buf, 0, sizeof(recv_buf));
-		//发送数据  
-		std::cin >> recv_buf;
-		int iSend = send(sockConn, recv_buf, sizeof(recv_buf), 0);
-		if (iSend == SOCKET_ERROR){
-			printf("send failed");
-			break;
-		}
-		
-
-		char recvBuf[100];
-		memset(recvBuf, 0, sizeof(recvBuf));
-		//      //接收数据  
-		recv(sockConn, recvBuf, sizeof(recvBuf), 0);
-		printf("%s\n", recvBuf);
-
-//		closesocket(sockConn);
+	memset(&addrClient, 0x00, len);
+	//等待客户请求到来    
+	sockConn = accept(sockSrv, (SOCKADDR *)&addrClient, &len);
+	if (sockConn == SOCKET_ERROR){
+		printf("Accept failed:%d", WSAGetLastError());
+		return false;
 	}
-	*/
-	
+	printf("Accept client IP:[%s]\n", inet_ntoa(addrClient.sin_addr));
+	return true;
 }
 
-void Server::onSendMessage(std::string message)
+bool Server::onSendMessage(char* message,int len)
 {
-	int iSend = send(sockConn, message.c_str(), message.length(), 0);
+	int iSend = send(sockConn, message, len, 0);
+	cout << " server send : " << iSend << endl;
+	return true;
 }
 
-void Server::Close()
+void Server::close()
 {
 	closesocket(sockSrv);
 	WSACleanup();

@@ -2,8 +2,10 @@
 
 #include <thread>
 #include "wxlogger_def.h"
+
 using namespace wwx;
 using namespace wxlog;
+
 Client::Client(std::string server_ip, int port)
 {
 	m_server_ip = server_ip;
@@ -60,20 +62,19 @@ void Client::StartRecvProcess(WebSocket_Client* ws_client)
 }
 */
 
-void Client::onSendMessage(std::string message)
+bool Client::onSendMessage(char* message,int len)
 {
-	if (message.empty())
-		return;
-
-	std::string s_tmp;
-	int i_size = message.size();
-	for (int i = 0; i < i_size; i++)
-	{
-		s_tmp += chToHex(message[i]);
-	}
-	WXLOG_DEBUG("client send : [ " << s_tmp << " ]");
+	//std::string s_tmp;
+	//int i_size = message.size();
+	//for (int i = 0; i < i_size; i++)
+	//{
+	//	s_tmp += chToHex(message[i]);
+	//}
+	//WXLOG_DEBUG("client send : [ " << s_tmp << " ]");
 	//std::cout << "send : " << message.c_str() << std::endl;
-	send(sockClient, message.data(), message.length(), 0);
+	int iSend = send(sockClient, message, len, 0);
+	cout << "client send : " << iSend << endl;
+	return true;
 
 }
 

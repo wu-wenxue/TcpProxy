@@ -18,7 +18,7 @@ namespace wwx
 
 		bool Connect();
 
-		void onSendMessage(std::string message);
+		bool onSendMessage(char* message,int len);
 
 		//	void StartRecvProcess(WebSocket_Client* ws_client);
 
